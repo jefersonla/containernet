@@ -169,7 +169,7 @@ function of {
     fi
     # was: git clone git://openflowswitch.org/openflow.git
     # Use our own fork on github for now:
-    git clone git://github.com/mininet/openflow
+    git clone https://github.com/mininet/openflow.git
     cd $BUILD_DIR/openflow
 
     # Patch controller to handle more than 16 switches
@@ -416,7 +416,7 @@ function ivs {
 
     # Install IVS from source
     cd $BUILD_DIR
-    git clone git://github.com/floodlight/ivs $IVS_SRC --recursive
+    git clone https://github.com/floodlight/ivs.git $IVS_SRC --recursive
     cd $IVS_SRC
     make
     sudo make install
@@ -442,7 +442,7 @@ function ryu {
     fi
     # fetch RYU
     cd $BUILD_DIR/
-    git clone git://github.com/osrg/ryu.git ryu
+    git clone https://github.com/osrg/ryu.git ryu
     cd ryu
 
     # install ryu
@@ -550,7 +550,7 @@ function oftest {
 
     # Install oftest:
     cd $BUILD_DIR/
-    git clone git://github.com/floodlight/oftest
+    git clone https://github.com/floodlight/oftest.git
 }
 
 # Install cbench
@@ -565,7 +565,7 @@ function cbench {
     cd $BUILD_DIR/
     # was:  git clone git://gitosis.stanford.edu/oflops.git
     # Use our own fork on github for now:
-    git clone git://github.com/mininet/oflops
+    git clone https://github.com/mininet/oflops.git
     cd oflops
     sh boot.sh || true # possible error in autoreconf, so run twice
     sh boot.sh
@@ -679,20 +679,29 @@ function all {
         exit 3
     fi
     echo "Installing all packages except for -eix (doxypy, ivs, nox-classic)..."
+    echo "EBAHH"
     pre_build
+	echo "EBAHH2"
     kernel
+	echo "EBAHH3"
     mn_deps
+	echo "EBAHH4"
     # Skip mn_dev (doxypy/texlive/fonts/etc.) because it's huge
     # mn_dev
     of
+	echo "EBAHH5"
     install_wireshark
-    ovs
+	echo "EBAHH6"    
+	ovs
+	echo "EBAHH7"
     # We may add ivs once it's more mature
     # ivs
     # NOX-classic is deprecated, but you can install it manually if desired.
     # nox
     pox
+	echo "EBAHH8"
     oftest
+	echo "EBAHH9"
     cbench
     echo "Enjoy Mininet!"
 }
